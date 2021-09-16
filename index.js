@@ -2,7 +2,7 @@ var http = require('http')
 ,       fs = require('fs');
 
 var server = http.createServer(function(req, res){
-  var stream = fs.createReadStream('test.html');
+  var stream = fs.createReadStream('./index.html');
   stream.pipe(res);
 });
 server.listen(1337);
