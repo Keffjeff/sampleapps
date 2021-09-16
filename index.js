@@ -1,11 +1,9 @@
-const http = require('http');
+const http = require('http')
+const fs = require('fs')
 
-const server = http.createServer((request, response) => {
-    response.writeHead(200, {"Content-Type": "text/html"});
-    response.end('<head><style> body {background-image: url('https://cswesteurope1003bffda3ce.blob.core.windows.net/images/lockscreen.jpg');}</style></head><body><p><b><font size="400" color="blue">Created with the power of Siri and Bicep!</font></b></p></body>');
-});
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'content-type': 'text/html' })
+  fs.createReadStream('index.html').pipe(res)
+})
 
-const port = process.env.PORT || 1337;
-server.listen(port);
-
-console.log("Server running at http://localhost:%d", port);
+server.listen(process.env.PORT || 8080)
