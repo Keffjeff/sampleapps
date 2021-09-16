@@ -1,9 +1,10 @@
-const http = require('http')
-const fs = require('fs')
+const express = require("express");
+const app = express();
 
-const server = http.createServer((req, res) => {
-  res.writeHead(200, { 'content-type': 'text/html' })
-  fs.createReadStream('index.html').pipe(res)
-})
+app.listen(3000, () => {
+  console.log("Application started and Listening on port 3000");
+});
 
-server.listen(process.env.PORT || 8080)
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/index.html");
+});
