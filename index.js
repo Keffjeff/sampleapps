@@ -1,10 +1,11 @@
-var http = require('http')
-,       fs = require('fs');
+const http = require('http');
 
-var server = http.createServer(function(req, res){
-  var stream = fs.createReadStream('index.html');
-  stream.pipe(res);
+const server = http.createServer((request, response) => {
+    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.end('<head><style> body {background-image: url('https://cswesteurope1003bffda3ce.blob.core.windows.net/images/lockscreen.jpg');}</style></head><body><p><b><font size="400" color="blue">Created with the power of Siri and Bicep!</font></b></p></body>');
 });
-server.listen(1337);
+
+const port = process.env.PORT || 1337;
+server.listen(port);
 
 console.log("Server running at http://localhost:%d", port);
