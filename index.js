@@ -1,11 +1,10 @@
-   var http = require('http');
-   var fs = require('fs');
+var http = require('http')
+,       fs = require('fs');
 
-  http.createServer(function(request, response) {  
-    response.writeHeader(200, {"Content-Type": "text/html"});  
-    var readSream = fs.createReadStream('index.html','utf8')
-    readSream.pipe(response);
-  }).listen(3000);
-
+var server = http.createServer(function(req, res){
+  var stream = fs.createReadStream('test.html');
+  stream.pipe(res);
+});
+server.listen(1337);
 
 console.log("Server running at http://localhost:%d", port);
