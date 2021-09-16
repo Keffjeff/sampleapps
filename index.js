@@ -1,11 +1,11 @@
-const http = require('http');
-const express = require('express');
-const app = new express();
+   var http = require('http');
+   var fs = require('fs');
 
-app.get('/', function(request, response){
-    response.sendFile('test.html');});
+  http.createServer(function(request, response) {  
+    response.writeHeader(200, {"Content-Type": "text/html"});  
+    var readSream = fs.createReadStream('index.html','utf8')
+    readSream.pipe(response);
+  }).listen(3000);
 
-const port = process.env.PORT || 1337;
-app.listen(port);
 
 console.log("Server running at http://localhost:%d", port);
